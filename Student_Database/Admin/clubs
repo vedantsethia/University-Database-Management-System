@@ -1,0 +1,28 @@
+<?php
+	include 'db.php';
+	$sql = "SELECT * FROM club";	
+	$result = mysqli_query($conn,$sql);
+	$resultCheck = mysqli_num_rows($result);
+	if($resultCheck == 0){
+		echo "There are no clubs in the database.";
+	}
+	else{
+		echo "<table style = 'width:100%'>";
+		echo "<tr>";
+		echo "<th>Department Id</th>";
+		echo "<th>Department Name</th>";
+		echo "<th>Budget</th>";
+		echo "<th>Department Block</th>";
+		echo "</tr>";
+		while($row = mysqli_fetch_assoc($result)){
+			echo "<tr>";
+			echo "<td>".$row['dept_id']."</td>";
+			echo "<td>".$row['dept_name']."</td>";
+			echo "<td>".$row['budget']."</td>";
+			echo "<td>".$row['building']."</td>";
+			echo "</tr>";
+		}
+		echo "</table>";
+	}
+
+?>
